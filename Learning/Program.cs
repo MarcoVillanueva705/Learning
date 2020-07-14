@@ -18,12 +18,14 @@ namespace Learning
         }
 
         //using an built-in async function from .NET library
-        //
+        
         static async void Download()
         {
             HttpClient client = new HttpClient();
             var data = await client.GetStringAsync("http://rouxacademy.com");
             Console.WriteLine("Data assimilated..." + data);
         }
+        //for next segment anonymous fuctions, callbacks and action to manage
+        //program flow
     }
 }
