@@ -18,36 +18,40 @@ namespace Learning
         }
 
         //using an built-in async function from .NET library
-        
+
         //static async void Download()
         //{
         //    HttpClient client = new HttpClient();
         //    var data = await client.GetStringAsync("http://rouxacademy.com");
         //    Console.WriteLine("Data assimilated..." + data);
         //}
-        //for next segment anonymous fuctions, callbacks and action to manage
-        //program flow
 
         //Imaginary external network library
 
-         static void Download()
+        //Network.Download action callback from class Network
+        static void Download()
         {
-            Network.Download(OnDownloaded);
+            Network.Download(() => Console.WriteLine("Data Assmilated..."));
         }
 
-        static void OnDownloaded()
-        {
-            Console.WriteLine("Data assimilated...");
-        }
+        //static void OnDownloaded()
+        //{
+        //    Console.WriteLine("Data assimilated...");
+        //}
+
+        //Action keyword activates callback
+        //Encapsulates Task.Run methods etc b/c they have 0 params
 
         class Network
         {
             static public void Download(Action callback)
             {
-                Task.Run(() => {
-                Thread.Sleep(3000);
+                Task.Run(() =>
+                {
+                    Thread.Sleep(3000);
                     callback();
-            });
+                });
+            }
         }
     }
 }
