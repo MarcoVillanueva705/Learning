@@ -31,7 +31,7 @@ namespace Learning
         //Network.Download action callback from class Network
         static void Download()
         {
-            Network.Download(() => Console.WriteLine("Data Assmilated..."));
+            Network.Download((message) => Console.WriteLine("Data Assmilated..." + message));
         }
 
         //static void OnDownloaded()
@@ -44,12 +44,12 @@ namespace Learning
 
         class Network
         {
-            static public void Download(Action callback)
+            static public void Download(Action<String> callback)
             {
                 Task.Run(() =>
                 {
                     Thread.Sleep(3000);
-                    callback();
+                    callback("completed!");
                 });
             }
         }
